@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Word Search Puzzle</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================================= -->
+    <!-- START SCREEN -->
+    <!-- ================================= -->
+
+    <section id="startScreen" class="screen start-screen">
+
+        <div class="start-card">
+
+            <div class="logo">🧠</div>
+
+            <h1>AI Word Search</h1>
+
+            <p>
+                Find the hidden Artificial Intelligence words!
+                Test your knowledge and improve your skills.
+            </p>
+
+            <input
+                type="text"
+                id="playerNameInput"
+                placeholder="Enter your name"
+                maxlength="20"
+                autocomplete="off"
+            >
+
+            <button id="startBtn" class="primary-btn">
+                Start Playing
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- GAME SCREEN -->
+    <!-- ================================= -->
+
+    <section id="gameScreen" class="screen hidden">
+
+        <!-- HEADER -->
+
+        <header class="top-header">
+
+            <div class="header-content">
+
+                <h1>🧠 AI Word Search</h1>
+
+                <p>Find all the hidden AI keywords</p>
+
+            </div>
+
+            <button id="homeBtn" class="secondary-btn">
+                🏠 Home
+            </button>
+
+        </header>
+
+
+        <!-- MAIN GAME -->
+
+        <main class="game-container">
+
+
+            <!-- PLAYER INFORMATION -->
+
+            <div class="game-info">
+
+                <div class="info-card">
+
+                    <span>Player</span>
+
+                    <strong id="displayPlayerName">
+                        Player
+                    </strong>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <span>Time</span>
+
+                    <strong id="timer">
+                        00:00
+                    </strong>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <span>Hints</span>
+
+                    <strong id="hintsCount">
+                        3
+                    </strong>
+
+                </div>
+
+
+                <div class="info-card">
+
+                    <span>Found</span>
+
+                    <strong id="foundCount">
+                        0 / 7
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- GAME LAYOUT -->
+
+            <div class="game-layout">
+
+
+                <!-- PUZZLE SECTION -->
+
+                <div class="puzzle-section">
+
+                    <div class="section-heading">
+
+                        <h2>Find the Words</h2>
+
+                        <p>
+                            Drag horizontally or vertically
+                            to find the hidden words.
+                        </p>
+
+                    </div>
+
+
+                    <!-- WORD SEARCH GRID -->
+
+                    <div
+                        id="wordGrid"
+                        class="word-grid"
+                        aria-label="7 by 7 word search puzzle"
+                    ></div>
+
+
+                    <!-- GAME BUTTONS -->
+
+                    <div class="game-buttons">
+
+                        <button
+                            id="hintBtn"
+                            class="hint-btn"
+                        >
+                            💡 Hint
+                        </button>
+
+
+                        <button
+                            id="newPuzzleBtn"
+                            class="secondary-btn"
+                        >
+                            🔄 New Puzzle
+                        </button>
+
+
+                        <button
+                            id="leaderboardBtn"
+                            class="secondary-btn"
+                        >
+                            🏆 Leaderboard
+                        </button>
+
+                    </div>
+
+
+                    <!-- MESSAGE -->
+
+                    <p id="message" class="message">
+                        Select a hidden word to begin!
+                    </p>
+
+                </div>
+
+
+
+                <!-- FOUND KEYWORDS SECTION -->
+
+                <aside class="keyword-section">
+
+                    <h2>Found Keywords</h2>
+
+                    <p class="keyword-description">
+                        Correctly identified words appear here.
+                    </p>
+
+
+                    <div id="wordList" class="word-list">
+
+                        <p class="empty-message">
+                            No words found yet.
+                            Start searching!
+                        </p>
+
+                    </div>
+
+
+                    <!-- PROGRESS -->
+
+                    <div class="progress-area">
+
+                        <div class="progress-heading">
+
+                            <strong>Progress</strong>
+
+                            <span id="progressText">
+                                0% Completed
+                            </span>
+
+                        </div>
+
+
+                        <div class="progress-bar">
+
+                            <div id="progressFill"></div>
+
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </main>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- LEADERBOARD SCREEN -->
+    <!-- ================================= -->
+
+    <section
+        id="leaderboardScreen"
+        class="screen hidden"
+    >
+
+        <div class="leaderboard-card">
+
+            <div class="leaderboard-icon">
+                🏆
+            </div>
+
+            <h1>Leaderboard</h1>
+
+            <p>Top 10 Players</p>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Rank</th>
+
+                            <th>Player</th>
+
+                            <th>Time</th>
+
+                            <th>Hints</th>
+
+                            <th>Score</th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="leaderboardBody">
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="leaderboard-buttons">
+
+                <button
+                    id="backToGameBtn"
+                    class="primary-btn"
+                >
+                    Back to Game
+                </button>
+
+
+                <button
+                    id="backHomeBtn"
+                    class="secondary-btn"
+                >
+                    Home
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- COMPLETION POPUP -->
+    <!-- ================================= -->
+
+    <div
+        id="completionPopup"
+        class="popup-overlay hidden"
+    >
+
+        <div class="popup-card">
+
+            <div class="success-icon">
+                🎉
+            </div>
+
+            <h2>Congratulations!</h2>
+
+            <p>
+                You found all the hidden AI words!
+            </p>
+
+
+            <div class="result-details">
+
+                <p>
+                    Your Time:
+                    <strong id="finalTime">00:00</strong>
+                </p>
+
+                <p>
+                    Your Score:
+                    <strong id="finalScore">0 points</strong>
+                </p>
+
+            </div>
+
+
+            <button
+                id="playAgainBtn"
+                class="primary-btn"
+            >
+                Play Again
+            </button>
+
+
+            <button
+                id="viewLeaderboardBtn"
+                class="secondary-btn"
+            >
+                View Leaderboard
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>

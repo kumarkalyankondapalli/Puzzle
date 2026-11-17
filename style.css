@@ -1,0 +1,768 @@
+
+/* ==========================================
+   GLOBAL STYLES
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef2ff;
+    color: #1e293b;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.screen {
+    min-height: 100vh;
+}
+
+
+/* ==========================================
+   START SCREEN
+========================================== */
+
+.start-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: linear-gradient(
+        135deg,
+        #4338ca,
+        #6366f1,
+        #06b6d4
+    );
+}
+
+.start-card {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 40px 30px;
+
+    text-align: center;
+
+    background: white;
+
+    border-radius: 20px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    font-size: 60px;
+    margin-bottom: 15px;
+}
+
+.start-card h1 {
+    font-size: 30px;
+    color: #4338ca;
+    margin-bottom: 12px;
+}
+
+.start-card p {
+    color: #64748b;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+
+/* ==========================================
+   INPUT FIELD
+========================================== */
+
+input {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+
+    font-size: 16px;
+
+    margin-bottom: 15px;
+
+    outline: none;
+}
+
+input:focus {
+    border-color: #4f46e5;
+
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+button {
+    border: none;
+
+    border-radius: 8px;
+
+    padding: 12px 18px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.primary-btn {
+    width: 100%;
+
+    color: white;
+
+    background: #4f46e5;
+}
+
+.secondary-btn {
+    color: #334155;
+
+    background: #e2e8f0;
+}
+
+.hint-btn {
+    color: white;
+
+    background: #f59e0b;
+}
+
+
+/* ==========================================
+   GAME HEADER
+========================================== */
+
+.top-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 20px 5%;
+
+    color: white;
+
+    background: #312e81;
+}
+
+.header-content h1 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.header-content p {
+    color: #c7d2fe;
+    font-size: 14px;
+}
+
+
+/* ==========================================
+   MAIN GAME CONTAINER
+========================================== */
+
+.game-container {
+    max-width: 1100px;
+
+    margin: 30px auto;
+
+    padding: 0 20px;
+}
+
+
+/* ==========================================
+   PLAYER INFORMATION CARDS
+========================================== */
+
+.game-info {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.info-card {
+    background: white;
+
+    padding: 18px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+.info-card span {
+    display: block;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.info-card strong {
+    display: block;
+
+    font-size: 20px;
+
+    color: #4338ca;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* ==========================================
+   GAME LAYOUT
+========================================== */
+
+.game-layout {
+    display: grid;
+
+    grid-template-columns: 1fr 280px;
+
+    gap: 25px;
+
+    align-items: start;
+}
+
+.puzzle-section,
+.keyword-section {
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.05);
+}
+
+.section-heading h2,
+.keyword-section h2 {
+    margin-bottom: 10px;
+
+    color: #312e81;
+}
+
+.section-heading p {
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+/* ==========================================
+   7 x 7 WORD SEARCH GRID
+========================================== */
+
+.word-grid {
+    display: grid;
+
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+
+    gap: 7px;
+
+    width: 100%;
+
+    max-width: 490px;
+
+    margin: 0 auto 25px;
+
+    touch-action: none;
+
+    user-select: none;
+}
+
+.letter-cell {
+    aspect-ratio: 1 / 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #e0e7ff;
+
+    color: #312e81;
+
+    border: 2px solid transparent;
+
+    border-radius: 8px;
+
+    font-size: clamp(14px, 3vw, 22px);
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: background 0.15s ease;
+}
+
+
+/* SELECTED LETTER */
+
+.letter-cell.selected {
+    background: #facc15;
+
+    color: #713f12;
+
+    border-color: #ca8a04;
+}
+
+
+/* FOUND WORD */
+
+.letter-cell.found {
+    background: #86efac;
+
+    color: #14532d;
+
+    border-color: #22c55e;
+}
+
+
+/* HINT LETTER */
+
+.letter-cell.hint-cell {
+    background: #fdba74;
+
+    color: #7c2d12;
+
+    border-color: #ea580c;
+}
+
+
+/* ==========================================
+   GAME BUTTONS
+========================================== */
+
+.game-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    justify-content: center;
+}
+
+.message {
+    text-align: center;
+
+    margin-top: 18px;
+
+    color: #4338ca;
+
+    font-weight: bold;
+
+    font-size: 14px;
+
+    min-height: 20px;
+
+    line-height: 1.5;
+}
+
+
+/* ==========================================
+   FOUND KEYWORDS SECTION
+========================================== */
+
+.keyword-section h2 {
+    font-size: 20px;
+}
+
+.keyword-description {
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.word-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+    min-height: 80px;
+}
+
+.empty-message {
+    color: #94a3b8;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+}
+
+
+/* FOUND WORD ITEM */
+
+.found-word {
+    padding: 12px;
+
+    border-radius: 8px;
+
+    background: #dcfce7;
+
+    color: #166534;
+
+    font-weight: bold;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.found-word small {
+    font-size: 11px;
+
+    font-weight: normal;
+}
+
+
+/* ==========================================
+   PROGRESS BAR
+========================================== */
+
+.progress-area {
+    margin-top: 30px;
+}
+
+.progress-heading {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 10px;
+
+    font-size: 13px;
+}
+
+.progress-heading strong {
+    color: #312e81;
+}
+
+.progress-heading span {
+    color: #64748b;
+}
+
+.progress-bar {
+    width: 100%;
+
+    height: 12px;
+
+    border-radius: 20px;
+
+    background: #e2e8f0;
+
+    overflow: hidden;
+}
+
+#progressFill {
+    height: 100%;
+
+    width: 0%;
+
+    background: #22c55e;
+
+    transition: width 0.3s ease;
+}
+
+
+/* ==========================================
+   LEADERBOARD
+========================================== */
+
+.leaderboard-card {
+    max-width: 850px;
+
+    margin: 50px auto;
+
+    padding: 30px 20px;
+
+    background: white;
+
+    border-radius: 15px;
+
+    text-align: center;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.leaderboard-icon {
+    font-size: 45px;
+
+    margin-bottom: 12px;
+}
+
+.leaderboard-card h1 {
+    color: #312e81;
+
+    margin-bottom: 10px;
+}
+
+.leaderboard-card > p {
+    color: #64748b;
+
+    margin-bottom: 25px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+
+    margin-bottom: 25px;
+}
+
+table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 550px;
+}
+
+th,
+td {
+    padding: 14px 10px;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    text-align: center;
+}
+
+th {
+    background: #eef2ff;
+
+    color: #312e81;
+}
+
+td {
+    font-size: 14px;
+}
+
+.leaderboard-buttons {
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+}
+
+.leaderboard-buttons .primary-btn {
+    width: auto;
+}
+
+
+/* ==========================================
+   COMPLETION POPUP
+========================================== */
+
+.popup-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.7);
+}
+
+.popup-card {
+    width: 100%;
+
+    max-width: 400px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    background: white;
+
+    border-radius: 15px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+.success-icon {
+    font-size: 55px;
+
+    margin-bottom: 15px;
+}
+
+.popup-card h2 {
+    color: #16a34a;
+
+    margin-bottom: 15px;
+}
+
+.popup-card > p {
+    margin-bottom: 15px;
+
+    color: #475569;
+}
+
+.result-details {
+    padding: 15px;
+
+    margin: 20px 0;
+
+    background: #f1f5f9;
+
+    border-radius: 10px;
+}
+
+.result-details p {
+    margin: 8px 0;
+
+    color: #475569;
+}
+
+.result-details strong {
+    color: #312e81;
+}
+
+.popup-card button {
+    width: 100%;
+
+    margin-top: 10px;
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN - TABLET
+========================================== */
+
+@media (max-width: 750px) {
+
+    .game-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .game-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .top-header {
+        padding: 15px 20px;
+    }
+
+    .header-content h1 {
+        font-size: 19px;
+    }
+
+    .puzzle-section,
+    .keyword-section {
+        padding: 18px;
+    }
+
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN - MOBILE
+========================================== */
+
+@media (max-width: 450px) {
+
+    .start-card {
+        padding: 30px 20px;
+    }
+
+    .start-card h1 {
+        font-size: 25px;
+    }
+
+    .game-container {
+        padding: 0 12px;
+    }
+
+    .word-grid {
+        gap: 4px;
+    }
+
+    .letter-cell {
+        border-radius: 5px;
+
+        font-size: 16px;
+    }
+
+    .game-buttons {
+        flex-direction: column;
+    }
+
+    .game-buttons button {
+        width: 100%;
+    }
+
+    .top-header {
+        gap: 10px;
+    }
+
+    .top-header .secondary-btn {
+        padding: 10px;
+    }
+
+    .leaderboard-card {
+        margin: 25px 12px;
+
+        padding: 20px 12px;
+    }
+
+}
