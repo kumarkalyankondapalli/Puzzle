@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # AI Word Search Puzzle
 
@@ -72,3 +73,7 @@ Scores are saved only in the current browser and device. They are not shared bet
 8. Click Save.
 
 GitHub Pages will publish your game website.
+=======
+# Puzzle
+A simple responsive website built using HTML, CSS, and JavaScript with an interactive and user-friendly interface.
+>>>>>>> c19353113b48010d9066a2d9d762dd1771639705
